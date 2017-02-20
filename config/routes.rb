@@ -6,8 +6,10 @@ Rails.application.routes.draw do
 
 
   resources :bags do
-    resources :bookings, only: [:show, :new, :create, :index]
+    resources :bookings, only: [:new, :create, :index]
   end
+
+  resources :bookings, only: [:show]
 
 
 
