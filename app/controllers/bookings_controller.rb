@@ -10,7 +10,6 @@ class BookingsController < ApplicationController
   end
 
   def new
-
     @booking = Booking.new
   end
 
@@ -28,25 +27,8 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit()
+    params.require(:booking).permit(:check_in, :check_out, :total_price, :rating, :content)
   end
 
-#   def new
-#   @cocktail = Cocktail.find(params[:cocktail_id])
-#   @dose = Dose.new
-
-#   end
-
-#   def create
-#     @cocktail = Cocktail.find(params[:cocktail_id])
-#     @dose = Dose.new(dose_params)
-#   @dose.cocktail = @cocktail
-
-#   if @dose.save
-#       redirect_to root_path(@cocktail)
-#     else
-#       render :new
-#   end
-# end
 
 end
