@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  resources :bags
+  resources :bags do
+    resources :bookings, only: [:new, :create, :index]
+  end
+
+  resources :bookings, only: [:show]
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
