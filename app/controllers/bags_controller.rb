@@ -15,8 +15,12 @@ class BagsController < ApplicationController
 
   def create
     @bag = Bag.new(bag_params)
-    @bag.save
-    redirect_to bag_path(@bag)
+    @bag.user = current_user
+    if@bag.save
+      redirect_to bag_path(@bag)
+    else
+      render :new
+    end
   end
 
   def edit
