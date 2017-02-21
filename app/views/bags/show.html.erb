@@ -15,77 +15,46 @@
   </div>
 </div>
 
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <p>
-          <strong><%= @bag.title %></strong>
-        </p>
-
-        <p>
-          <strong>Category:</strong>
-          <%= @bag.category %>
-        </p>
-
-        <p>
-          <strong>Brand:</strong>
-          <%= @bag.brand %>
-        </p>
-
-        <p>
-          <strong>About this bag:</strong>
-          <%= @bag.description %>
-        </p>
-
-        <p>
-          <strong>Capacity:</strong>
-          <%= @bag.capacity %>
-        </p>
-
-        <p>
-          <strong>Price per day:</strong>
-          <%= @bag.price_per_day %>
-        </p>
-</table>
-
-
-
-      <div class="booking-form">
-        <% if @bag.errors.any? %>
-        <ul>
-          <% @bag.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-          <% end %>
-        </ul>
-        <% end %>
-
-        <%= simple_form_for(@bag) do |f| %>
-        <%= f.error_notification %>
-
-        <div class="form-inputs">
-
-          <%= f.input :description %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit %>
-        </div>
-        <% end %>
+      <div class="bag-description">
+        <h3>About this bag</h3>
+        <p><%= @bag.description %></p>
       </div>
 
 
-
-
-
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <td><%= @bag.title %></td>
+          </tr>
+          <tr>
+            <th>Category</th>
+            <td><%= @bag.category %></td>
+          </tr>
+          <tr>
+            <th>Brand</th>
+            <td><%= @bag.brand %></td>
+          </tr>
+          <tr>
+            <th>Capacity</th>
+            <td><%= @bag.capacity %></td>
+          </tr>
+          <tr>
+            <th>Price per day (£)</th>
+            <td><%= @bag.price_per_day %></td>
+          </tr>
+        </tbody>
+      </table>
 
     </div>
   </div>
