@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <h1>Add a bag</h1>
+      <%= simple_form_for(@bag) do |f| %>
+        <%= f.input :category %>
+        <%= f.input :brand %>
+        <%= f.input :capacity %>
+        <%= f.input :price_per_day %>
+        <%= f.input :description %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
