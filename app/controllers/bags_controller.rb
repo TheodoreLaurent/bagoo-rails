@@ -3,8 +3,8 @@ class BagsController < ApplicationController
   before_action :set_bag, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bags = Bag.all
-  end
+    @bags = Bag.search(params[:query])
+   end
 
   def show
   end
