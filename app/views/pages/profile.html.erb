@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+
+     <h3>My Profile</h3>
+      <div class="text-center">
+
+      <% if @user.facebook_picture_url %>
+        <%= image_tag @user.facebook_picture_url %>
+      <% end %>
+
+      </div>
+
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th> First Name</th>
+            <td><%= @user.first_name %></td>
+          </tr>
+          <tr>
+            <th>Last Name</th>
+            <td><%= @user.last_name%></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= @user.email%></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
