@@ -20,7 +20,7 @@ user2 = User.create({
   })
 
 bag1 = Bag.create({
-  category: 'travel',
+  category: 'Travel',
   brand: 'Vuitton',
   capacity: '30',
   price_per_day: '30',
