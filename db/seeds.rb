@@ -5,4 +5,44 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-bags = Bag.create([{ category: 'travel', brand: 'Vuitton', capacity: '30', price_per_day: '30', description: 'great bag' }, { category: 'Luxury', brand: 'Gucci', capacity: '10', price_per_day: '100', description: 'great luxury bag' }])
+
+Bag.destroy_all
+User.destroy_all
+
+user1 = User.create({
+  email: 'remi.dyvoire@gmail.com',
+  password: '123456',
+  })
+
+user2 = User.create({
+  email: 'bob@gmail.com',
+  password: '654321',
+  })
+
+bag1 = Bag.create({
+  category: 'travel',
+  brand: 'Vuitton',
+  capacity: '30',
+  price_per_day: '30',
+  description: 'great bag'
+  })
+
+bag2 = Bag.create({
+  category: 'Luxury',
+  brand: 'Gucci',
+  capacity: '10',
+  price_per_day: '100',
+  description: 'great luxury bag'
+  })
+
+
+bag1.user = user1
+bag2.user = user2
+
+user1.save!
+user2.save!
+
+bag1.save!
+bag2.save!
+
+
