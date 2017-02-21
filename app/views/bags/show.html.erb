@@ -1,0 +1,61 @@
+<br>
+<div class="cover-container text-center">
+  <div class="container">
+    <div class="cover">
+      <div class="bag-cover-photos">
+        <% if (defined?(@bag.photos))  %>
+        <% @bag.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, height: 350, crop: :fill %>
+        <% end %>
+        <% else %>
+        <p>This bag has no photos</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+
+      <div class="bag-description">
+        <h3>About this bag</h3>
+        <p><%= @bag.description %></p>
+      </div>
+
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <td><%= @bag.title %></td>
+          </tr>
+          <tr>
+            <th>Category</th>
+            <td><%= @bag.category %></td>
+          </tr>
+          <tr>
+            <th>Brand</th>
+            <td><%= @bag.brand %></td>
+          </tr>
+          <tr>
+            <th>Capacity</th>
+            <td><%= @bag.capacity %></td>
+          </tr>
+          <tr>
+            <th>Price per day (£)</th>
+            <td><%= @bag.price_per_day %></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
