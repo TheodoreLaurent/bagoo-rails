@@ -109,13 +109,17 @@
               <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
             </tr>
           </table>
+
           <button type="submit" class=" btn btn-primary btn-large btn-block">Book now!</button>
+
         </form>
       </div>
     </div>
   </div>
+
   <% content_for :after_js do %>
   <script>
+
     $("form.booking-request input").change(function(){
       console.log('hi');
       if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){

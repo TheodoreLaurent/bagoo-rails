@@ -25,8 +25,18 @@
         <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"%>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
-          <%= link_to "profile" do %>
+          <%= link_to "/profile" do %>
             <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+            <% end %>
+          </li>
+           <li>
+          <%= link_to "/listings" do %>
+            <i class="fa fa-suitcase"></i> <%= t(".profile", default: "My Listings") %>
+            <% end %>
+          </li>
+          <li>
+          <%= link_to "/my-bookings" do %>
+            <i class="fa fa-handshake-o"></i> <%= t(".profile", default: "My bookings") %>
             <% end %>
           </li>
           <li>
@@ -51,7 +61,7 @@
     <% end %>
 
     <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <%= link_to t(".top_call_to_action", default: "Rent my bag"), new_bag_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
