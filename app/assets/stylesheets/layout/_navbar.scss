@@ -44,7 +44,7 @@
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $gray;
   text-decoration: none;
 }
 
@@ -62,7 +62,7 @@
 .navbar-wagon-button:hover {
   color: white;
   background: $brand-color;
-  border-color: #ac2626;
+  border-color: $gray;
 }
 
 /* Navbar search form */
