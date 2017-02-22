@@ -1,0 +1,34 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <br> <br> <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>From</th>
+          </tr>
+        </thead>
+        <% if @conversations.any?  %>
+      <% @conversations.each do |conversation| %>
+        <% conversation.receipts.each do |receipt| %>
+
+            <tbody>
+              <tr>
+                <th><%= conversation.subject %></th>
+                <td><%= receipt.notification.sender.email %></td>
+
+                <td><%= link_to "Read", controller: "pages", action: "message_show", id: conversation.id %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        <% end %>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+

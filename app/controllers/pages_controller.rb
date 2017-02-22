@@ -13,9 +13,22 @@ class PagesController < ApplicationController
     @bookings = Booking.where(user_id: @user_id)
   end
 
+  def inbox
+    @user = current_user
+    @conversations = @user.mailbox.inbox
+  end
+
+  def message_show
+    @user = current_user
+    @conversations = @user.mailbox.inbox
+    @conversations = @conversations.find(params[:id])
+  end
+
   def dashboard
     @user = current_user
   end
 end
 
 
+# @conversations = @user.mailbox.inbox.first
+#     @receipts = @conversations.receipts_for @user
