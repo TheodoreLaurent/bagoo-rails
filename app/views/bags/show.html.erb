@@ -58,6 +58,8 @@
   </div>
 </div>
 
+<% if @bag.user != current_user %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
@@ -94,35 +96,35 @@
               <th>Number of days</th>
               <td style = "text-align: right" id="nbDays">
               </td>
-              </tr>
-              <tr>
-                <th>Total price</th>
-                <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
-              </tr>
-            </table>
+            </tr>
+            <tr>
+              <th>Total price</th>
+              <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
+            </tr>
+          </table>
 
-            <button type="submit" class=" btn btn-primary btn-large btn-block">Book now!</button>
+          <button type="submit" class=" btn btn-primary btn-large btn-block">Book now!</button>
 
-          </form>
-        </div>
+        </form>
       </div>
     </div>
+  </div>
 
-<% content_for :after_js do %>
+  <% content_for :after_js do %>
   <script>
 
-  $("form.booking-request input").change(function(){
-    console.log('hi');
-    if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){
-      var a = $("#checkout").datepicker('getDate').getTime();
-      var b = $("#checkin").datepicker('getDate').getTime();
-      var c = 24*60*60*1000;
-      var diffDays = Math.round(Math.abs((a - b)/(c)));
-      $('#nbDays').text(diffDays);
-      var price_per_day = <%= @bag.price_per_day %>
-      var total_price = diffDays * price_per_day
-      $('#total-price').text(total_price)
-    }
+    $("form.booking-request input").change(function(){
+      console.log('hi');
+      if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){
+        var a = $("#checkout").datepicker('getDate').getTime();
+        var b = $("#checkin").datepicker('getDate').getTime();
+        var c = 24*60*60*1000;
+        var diffDays = Math.round(Math.abs((a - b)/(c)));
+        $('#nbDays').text(diffDays);
+        var price_per_day = <%= @bag.price_per_day %>
+        var total_price = diffDays * price_per_day
+        $('#total-price').text(total_price)
+      }
     });
 
 // on chckin or checkout change
@@ -139,4 +141,12 @@
 // }
 
   </script>
+  <% end %>
+<% else %>
+    <div class="text-center">
+    <ul>
+      <li><%= link_to "Edit my listing", edit_bag_path  %></li>
+      <li><%= link_to "Delete my listing", bag_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+    </ul>
+  </div>
 <% end %>
