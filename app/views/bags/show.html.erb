@@ -79,9 +79,9 @@
 
       <%= simple_form_for([@bag, @booking]) do |f| %>
 
-      <%= f.input :check_in, as: :string, label: false, input_html:{type: "text", class: "form-control", id: "checkin", placeholder: "from", name: "check-in_date"} %>
+      <%= f.input :check_in, as: :string, label: false, input_html:{type: "text", class: "form-control", id: "checkin", placeholder: "from", name: "check-in_date", value: params[:checkin]} %>
 
-      <%= f.input :check_out, as: :string, label: false, id: "checkout-box" , wrapper_html:{}, label_html:{}, input_html:{type:"text", class:"form-control", id:"checkout", placeholder:"to", name:"check-out_date"} %>
+      <%= f.input :check_out, as: :string, label: false, id: "checkout-box" , wrapper_html:{}, label_html:{}, input_html:{type:"text", class:"form-control", id:"checkout", placeholder:"to", name:"check-out_date", value: params[:checkout]} %>
 
       <table class="table">
         <thead>
