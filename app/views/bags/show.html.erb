@@ -36,7 +36,7 @@
         </thead>
         <tbody>
           <tr>
-            <th>Name</th>
+            <th>Title</th>
             <td><%= @bag.title %></td>
           </tr>
           <tr>
@@ -50,6 +50,10 @@
           <tr>
             <th>Capacity</th>
             <td><%= @bag.capacity %></td>
+          </tr>
+          <tr>
+            <th>Pick-up Address</th>
+            <td><%= @bag.address%></td>
           </tr>
           <tr>
             <th>Price per day (£)</th>
@@ -68,6 +72,43 @@
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+<%= javascript_tag do %>
+$(document).ready(function() {
+var coord = <%= raw @bag_coordinates.to_json %>;
+alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
+});
+<% end %>
+<% end %>
+
+<!-- MAP FOR BAG -->
+<div id="map" class="map-container" style="width: 100%; height: 400px;">
+
+  <% content_for(:after_js) do %>
+  <script type="text/javascript">
+    $(document).on('ready', function() {
+
+      var handler = Gmaps.build('Google', { markers: { clusterer: undefined }});
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers([
+        {
+          "lat": <%= @bag.latitude %>,
+          "lng": <%= @bag.longitude %>,
+          "infowindow": "<h2>My bag is here !</h2>"
+        }
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(16);
+      });
+    })
+  </script>
+
+  <% end %>
+</div>
+
+<!-- -->
 
 <% if @bag.user != current_user %>
 
@@ -125,12 +166,13 @@
   });
 </script>
 
-  <% end %>
+<% end %>
+
 <% else %>
-    <div class="text-center">
-    <ul>
-      <li><%= link_to "Edit my listing", edit_bag_path  %></li>
-      <li><%= link_to "Delete my listing", bag_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
-    </ul>
-  </div>
+<div class="text-center">
+  <ul>
+    <li><%= link_to "Edit my listing", edit_bag_path  %></li>
+    <li><%= link_to "Delete my listing", bag_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+  </ul>
+</div>
 <% end %>
