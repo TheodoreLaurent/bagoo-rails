@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-    <h2>Inbox</h2>
+      <br> <br> <br>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -10,6 +10,7 @@
             <th>From</th>
           </tr>
         </thead>
+        <% if @conversations.any?  %>
       <% @conversations.each do |conversation| %>
         <% conversation.receipts.each do |receipt| %>
 
@@ -21,8 +22,8 @@
                 <td><%= link_to "Read", controller: "pages", action: "message_show", id: conversation.id %></td>
               </tr>
             </tbody>
-
           <% end %>
+        <% end %>
       <% end %>
       </table>
     </div>

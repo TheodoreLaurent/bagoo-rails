@@ -68,6 +68,7 @@ booking2 = Booking.new({
 
 
 
+
 booking1.user = user1
 booking1.bag = bag1
 
