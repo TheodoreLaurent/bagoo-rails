@@ -1,12 +1,15 @@
-
-<!-- Cards for results: need to adapt with the search option -->
-
-<h1 class="text-center">results</h1>
+<h1 class="text-center">My Bags</h1>
 
 <div class="container">
   <div class="row">
+  <% if current_user.bags == []  %>
+  <div class="text-center">
+  <br>
+    <h3>You have no bags listed</h3
+  </div>
+  <% else %>
 
-    <% @bags.each do |bag| %>
+    <% current_user.bags.each do |bag| %>
 
     <div class="col-xs-12 col-sm-4">
 
@@ -27,15 +30,15 @@
         <div class="card-description">
           <h2> <%= bag.brand %> </h2>
         </div>
-        <%= link_to "", bag_path(bag, {checkin: @checkin, checkout: @checkout}), class: "card-link" %>
+        <%= link_to "", bag_path(bag), class: "card-link" %>
       </div>
     </div>
     <% end %>
   </div>
 
+
+  <% end %>
+
+
 </div>
-
-<div></div>
-
-<br>
 

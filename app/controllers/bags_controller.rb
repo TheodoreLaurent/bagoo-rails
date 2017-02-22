@@ -4,10 +4,14 @@ class BagsController < ApplicationController
 
   def index
     @bags = Bag.search(params[:query])
+    @checkin = params[:checkin_query]
+    @checkout = params[:checkout_query]
    end
 
   def show
     @booking = Booking.new
+    @checkin = params[:checkin_query]
+    @checkout = params[:checkout_query]
   end
 
   def new
@@ -34,7 +38,7 @@ class BagsController < ApplicationController
 
   def destroy
     @bag.destroy
-    redirect_to root_path
+    redirect_to listings_path
   end
 
   private

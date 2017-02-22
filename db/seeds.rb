@@ -19,20 +19,28 @@ user2 = User.create({
   password: '654321',
   })
 
+
+
 bag1 = Bag.create({
+  title: 'A tasty Bag',
   category: 'Travel',
   brand: 'Vuitton',
   capacity: '30',
   price_per_day: '30',
-  description: 'great bag'
+  description: 'great bag',
+  datein: '01 Jan 2017',
+  dateout: '31 Dec 2017'
   })
 
 bag2 = Bag.create({
+  title: 'A sumptious handbag',
   category: 'Luxury',
   brand: 'Gucci',
   capacity: '10',
   price_per_day: '100',
-  description: 'great luxury bag'
+  description: 'great luxury bag',
+  datein: '01 Feb 2017',
+  dateout: '01 Nov 2017'
   })
 
 
@@ -44,5 +52,34 @@ user2.save!
 
 bag1.save!
 bag2.save!
+
+
+
+booking1 = Booking.new({
+  check_out: 'Date.new',
+  check_in: 'Date.new',
+  total_price: '120',
+
+  })
+
+booking2 = Booking.new({
+  check_out: 'Date.new',
+  check_in: 'Date.new',
+  total_price: '20',
+
+  })
+
+
+
+
+booking1.user = user1
+booking1.bag = bag1
+
+booking2.user = user2
+booking2.bag = bag2
+
+
+booking1.save!
+booking2.save!
 
 

@@ -55,35 +55,27 @@
             <th>Price per day (£)</th>
             <td><%= @bag.price_per_day %></td>
           </tr>
+          <tr>
+            <th>Available from</th>
+            <td><%= @bag.datein %></td>
+          </tr>
+          <tr>
+            <th>Available until</th>
+            <td><%= @bag.dateout %></td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<!-- display the review of the booking -->
+<% if @bag.user != current_user %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
       <form class="booking-request" role="form" >
         <h4>Review your booking below:</h4>
-<!--
-        <div class="form-group text-center">
-          <label class="sr-only" for="checkin">From</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="checkin" placeholder="from" name="check-in_date">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-          </div>
-        </div>
-
-        <div class="form-group text-center">
-          <label class="sr-only" for="checkout">To</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="checkout" placeholder="to" name="check-out_date">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-          </div>
-        </div>
-      -->
 
       <%= simple_form_for([@bag, @booking]) do |f| %>
 
@@ -102,8 +94,7 @@
           </tr>
           <tr>
             <th>Number of days</th>
-            <td style = "text-align: right" id="nbDays">
-            </td>
+            <td style = "text-align: right" id="nbDays"></td>
           </tr>
           <tr>
             <th>Total price</th>
@@ -121,7 +112,6 @@
 
 <% content_for :after_js do %>
 <script>
-
   $("form.booking-request input").change(function(){
     console.log('hi');
     if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){
@@ -135,6 +125,14 @@
       $('#total-price').text(total_price)
     }
   });
-
 </script>
+
+  <% end %>
+<% else %>
+    <div class="text-center">
+    <ul>
+      <li><%= link_to "Edit my listing", edit_bag_path  %></li>
+      <li><%= link_to "Delete my listing", bag_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+    </ul>
+  </div>
 <% end %>
