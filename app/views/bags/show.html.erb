@@ -74,46 +74,43 @@
 <div class="container">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
-      <form class="booking-request" role="form" >
+      <%= simple_form_for [@bag, @booking], class: 'booking-request' do |f| %>
         <h4>Review your booking below:</h4>
 
-      <%= simple_form_for([@bag, @booking]) do |f| %>
+        <%= f.input :check_in, as: :string, label: false, input_html:{ id: "checkin", placeholder: "from"} %>
 
-      <%= f.input :check_in, as: :string, label: false, input_html:{type: "text", class: "form-control", id: "checkin", placeholder: "from", name: "check-in_date"} %>
+        <%= f.input :check_out, as: :string, label: false, input_html:{ id:"checkout", placeholder: "to"} %>
 
-      <%= f.input :check_out, as: :string, label: false, id: "checkout-box" , wrapper_html:{}, label_html:{}, input_html:{type:"text", class:"form-control", id:"checkout", placeholder:"to", name:"check-out_date"} %>
+        <table class="table">
+          <thead>
+            <tr><th></th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Price per day</th>
+              <td style = "text-align: right"><%= @bag.price_per_day %></td>
+            </tr>
+            <tr>
+              <th>Number of days</th>
+              <td style = "text-align: right" id="nbDays"></td>
+            </tr>
+            <tr>
+              <th>Total price</th>
+              <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
+            </tr>
+          </table>
 
-      <table class="table">
-        <thead>
-          <tr><th></th><th></th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Price per day</th>
-            <td style = "text-align: right"><%= @bag.price_per_day %></td>
-          </tr>
-          <tr>
-            <th>Number of days</th>
-            <td style = "text-align: right" id="nbDays"></td>
-          </tr>
-          <tr>
-            <th>Total price</th>
-            <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
-          </tr>
-        </table>
-
-        <%= f.button :submit, class: 'btn btn-primary btn-large btn-block' , wrapper_html:{} %>
+          <%= f.submit class: 'btn btn-primary btn-large btn-block' %>
         <% end %>
 
-      </form>
     </div>
   </div>
 </div>
 
 <% content_for :after_js do %>
 <script>
-  $("form.booking-request input").change(function(){
-    console.log('hi');
+  $("form.new_booking input").change(function(){
+    // console.log('hi');
     if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){
       var a = $("#checkout").datepicker('getDate').getTime();
       var b = $("#checkin").datepicker('getDate').getTime();
