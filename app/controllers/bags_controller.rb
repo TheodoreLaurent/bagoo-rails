@@ -13,6 +13,14 @@ class BagsController < ApplicationController
 
   def show
     @bag_coordinates = { lat: @bag.latitude, lng: @bag.longitude }
+    @booking = Booking.new
+    @checkin = params[:checkin_query]
+    @checkout = params[:checkout_query]
+    if params[:checkin_query].empty? || params[:checkout_query].empty?
+      @bags = Bag.search(params[:query])
+    else
+      @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: params[:checkin_query], end_date: params[:checkout_query]})
+    end
   end
 
   def new
