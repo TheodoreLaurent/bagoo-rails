@@ -4,9 +4,13 @@ class BagsController < ApplicationController
 
   def index
     @bags = Bag.search(params[:query])
+    @checkin = params[:checkin_query]
+    @checkout = params[:checkout_query]
    end
 
   def show
+    @checkin = params[:checkin_query]
+    @checkout = params[:checkout_query]
   end
 
   def new
