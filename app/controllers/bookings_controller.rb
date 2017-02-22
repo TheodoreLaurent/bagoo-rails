@@ -16,7 +16,14 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.bag = @bag
+    @booking.user = current_user
+
     @booking.save
+    # if@booking.save
+      redirect_to my_bookings_path
+    # else
+    #   render :new
+    # end
 
   end
 
@@ -27,7 +34,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:check_in, :check_out, :total_price, :rating, :content)
+    params.require(:booking).permit(:check_in, :check_out)
   end
 
 
