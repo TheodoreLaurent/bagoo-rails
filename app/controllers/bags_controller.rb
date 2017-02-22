@@ -21,6 +21,7 @@ class BagsController < ApplicationController
     else
       @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: params[:checkin_query], end_date: params[:checkout_query]})
     end
+
   end
 
   def new
