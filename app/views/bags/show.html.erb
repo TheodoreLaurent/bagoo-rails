@@ -1,4 +1,6 @@
 <br>
+
+<!-- diplays the photos-->
 <div class="cover-container text-center">
   <div class="container">
     <div class="cover">
@@ -15,6 +17,7 @@
   </div>
 </div>
 
+<!-- display the information about the bag -->
 <div class="container">
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
@@ -66,84 +69,64 @@
   </div>
 </div>
 
-
 <% if @bag.user != current_user %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
-      <form class="booking-request" role="form" method="get" action="/bags">
+      <form class="booking-request" role="form" >
         <h4>Review your booking below:</h4>
-        <div class="form-group text-center">
-          <label class="sr-only" for="checkin">From</label>
-          <div class="input-group">
-            <input value="<%= params[:start_date] %>" type="text" class="form-control" id="checkin" placeholder="from" name="check-in_date">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-          </div>
-        </div>
-        <div class="form-group text-center">
-          <label class="sr-only" for="checkout">To</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="checkout" placeholder="to" name="check-out_date">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-          </div>
-        </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Price per day</th>
-              <td style = "text-align: right"><%= @bag.price_per_day %></td>
-            </tr>
-            <tr>
-              <th>Number of days</th>
-              <td style = "text-align: right" id="nbDays">
-              </td>
-            </tr>
-            <tr>
-              <th>Total price</th>
-              <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
-            </tr>
-          </table>
 
-          <button type="submit" class=" btn btn-primary btn-large btn-block">Book now!</button>
+      <%= simple_form_for([@bag, @booking]) do |f| %>
 
-        </form>
-      </div>
+      <%= f.input :check_in, as: :string, label: false, input_html:{type: "text", class: "form-control", id: "checkin", placeholder: "from", name: "check-in_date"} %>
+
+      <%= f.input :check_out, as: :string, label: false, id: "checkout-box" , wrapper_html:{}, label_html:{}, input_html:{type:"text", class:"form-control", id:"checkout", placeholder:"to", name:"check-out_date"} %>
+
+      <table class="table">
+        <thead>
+          <tr><th></th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Price per day</th>
+            <td style = "text-align: right"><%= @bag.price_per_day %></td>
+          </tr>
+          <tr>
+            <th>Number of days</th>
+            <td style = "text-align: right" id="nbDays"></td>
+          </tr>
+          <tr>
+            <th>Total price</th>
+            <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
+          </tr>
+        </table>
+
+        <%= f.button :submit, class: 'btn btn-primary btn-large btn-block' , wrapper_html:{} %>
+        <% end %>
+
+      </form>
     </div>
   </div>
+</div>
 
-  <% content_for :after_js do %>
-  <script>
+<% content_for :after_js do %>
+<script>
+  $("form.booking-request input").change(function(){
+    console.log('hi');
+    if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){
+      var a = $("#checkout").datepicker('getDate').getTime();
+      var b = $("#checkin").datepicker('getDate').getTime();
+      var c = 24*60*60*1000;
+      var diffDays = Math.round(Math.abs((a - b)/(c)));
+      $('#nbDays').text(diffDays);
+      var price_per_day = <%= @bag.price_per_day %>
+      var total_price = diffDays * price_per_day
+      $('#total-price').text(total_price)
+    }
+  });
+</script>
 
-    $("form.booking-request input").change(function(){
-      console.log('hi');
-      if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){
-        var a = $("#checkout").datepicker('getDate').getTime();
-        var b = $("#checkin").datepicker('getDate').getTime();
-        var c = 24*60*60*1000;
-        var diffDays = Math.round(Math.abs((a - b)/(c)));
-        $('#nbDays').text(diffDays);
-        var price_per_day = <%= @bag.price_per_day %>
-        var total_price = diffDays * price_per_day
-        $('#total-price').text(total_price)
-      }
-    });
-// on chckin or checkout change
-  // update the nbDays avec days()
-// $('#checkin')
-//   $('#nbDays').text(days());
-// })
-// // calculate total price
-// function total_price() {
-//   days = $('#nbDays');
-//   return (price * days);
-// }
-  </script>
   <% end %>
 <% else %>
     <div class="text-center">

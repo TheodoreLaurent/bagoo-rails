@@ -9,6 +9,7 @@ class BagsController < ApplicationController
    end
 
   def show
+    @booking = Booking.new
     @checkin = params[:checkin_query]
     @checkout = params[:checkout_query]
   end
