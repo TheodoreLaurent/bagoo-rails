@@ -1,5 +1,14 @@
 <h2>my bookings</h2>
-<%= @user.bookings %>
+<% @user.bags.each do |bag| %>
+  <% bag.bookings.each do |booking| %>
+    <%# if not   %>
+    <p><%= booking.check_out %></p>
+    <%# else %>
+
+    <%# end %>
+  <% end %>
+<% end %>
+
 
 <h2>bookigns to vaildate </h2>
-
+<p>we are not htere yet</p>

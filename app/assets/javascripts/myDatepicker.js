@@ -1,14 +1,15 @@
 $(document).ready(function(){
-  $('#checkin').datepicker({
-    clearBtn: true,
-    autoclose: true,
-    // format: "dd/mm/yyyy",
-    todayHighlight: true
-  });
   $('#checkout').datepicker({
     clearBtn: true,
     autoclose: true,
-    // format: "dd/mm/yyyy",
+    format: "dd/mm/yyyy",
+    todayHighlight: true
+  });
+
+  $('#checkin').datepicker({
+    clearBtn: true,
+    autoclose: true,
+    format: "dd/mm/yyyy",
     todayHighlight: true
   });
 });
