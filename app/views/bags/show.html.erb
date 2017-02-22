@@ -52,14 +52,22 @@
             <th>Price per day (£)</th>
             <td><%= @bag.price_per_day %></td>
           </tr>
+          <tr>
+            <th>Available from</th>
+            <td><%= @bag.datein %></td>
+          </tr>
+          <tr>
+            <th>Available until</th>
+            <td><%= @bag.dateout %></td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
 
-<% if @bag.user != current_user %>
 
+<% if @bag.user != current_user %>
 <div class="container">
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
@@ -79,7 +87,6 @@
             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
           </div>
         </div>
-
         <table class="table">
           <thead>
             <tr>
@@ -126,20 +133,16 @@
         $('#total-price').text(total_price)
       }
     });
-
 // on chckin or checkout change
   // update the nbDays avec days()
-
 // $('#checkin')
 //   $('#nbDays').text(days());
 // })
-
 // // calculate total price
 // function total_price() {
 //   days = $('#nbDays');
 //   return (price * days);
 // }
-
   </script>
   <% end %>
 <% else %>
