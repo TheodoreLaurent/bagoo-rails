@@ -3,9 +3,10 @@ class BagsController < ApplicationController
   before_action :set_bag, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bags = Bag.search(params[:query])
+
     @checkin = params[:checkin_query]
     @checkout = params[:checkout_query]
+    @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: params[:checkin_query], end_date: params[:checkout_query]})
    end
 
   def show
