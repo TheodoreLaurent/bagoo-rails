@@ -27,7 +27,9 @@ bag1 = Bag.create({
   brand: 'Vuitton',
   capacity: '30',
   price_per_day: '30',
-  description: 'great bag'
+  description: 'great bag',
+  datein: '01 Jan 2017',
+  dateout: '31 Dec 2017'
   })
 
 bag2 = Bag.create({
@@ -36,7 +38,9 @@ bag2 = Bag.create({
   brand: 'Gucci',
   capacity: '10',
   price_per_day: '100',
-  description: 'great luxury bag'
+  description: 'great luxury bag',
+  datein: '01 Feb 2017',
+  dateout: '01 Nov 2017'
   })
 
 

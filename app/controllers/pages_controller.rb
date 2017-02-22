@@ -24,6 +24,9 @@ class PagesController < ApplicationController
     @conversations = @conversations.find(params[:id])
   end
 
+  def dashboard
+    @user = current_user
+  end
 end
 
 

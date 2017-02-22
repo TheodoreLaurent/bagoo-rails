@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/inbox' => 'pages#inbox'
   get '/message' => 'pages#message'
   get '/message/:id' => 'pages#message_show'
+  get '/dashboard', to: 'pages#dashboard'
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
