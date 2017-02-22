@@ -6,8 +6,13 @@ class BagsController < ApplicationController
 
     @checkin = params[:checkin_query]
     @checkout = params[:checkout_query]
-    @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: params[:checkin_query], end_date: params[:checkout_query]})
-   end
+    if params[:checkin_query].empty? || params[:checkout_query].empty?
+      @bags = Bag.search(params[:query])
+    else
+      @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: params[:checkin_query], end_date: params[:checkout_query]})
+    end
+  end
+
 
   def show
     @booking = Booking.new

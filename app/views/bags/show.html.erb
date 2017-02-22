@@ -77,9 +77,10 @@
       <%= simple_form_for [@bag, @booking], class: 'booking-request' do |f| %>
         <h4>Review your booking below:</h4>
 
-        <%= f.input :check_in, as: :string, label: false, input_html:{ id: "checkin", placeholder: "from"} %>
+        <%= f.input :check_in, as: :string, label: false, input_html:{ id: "checkin", placeholder: "from", value: params[:checkin]} %>
 
-        <%= f.input :check_out, as: :string, label: false, input_html:{ id:"checkout", placeholder: "to"} %>
+
+        <%= f.input :check_out, as: :string, label: false, input_html:{ id:"checkout", placeholder: "to", value: params[:checkout]} %>
 
         <table class="table">
           <thead>
@@ -99,7 +100,6 @@
               <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
             </tr>
           </table>
-
 
           <%= f.submit class: 'btn btn-primary btn-large btn-block' %>
         <% end %>
