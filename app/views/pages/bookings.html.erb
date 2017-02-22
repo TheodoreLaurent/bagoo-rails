@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+      <% if @bookings.any? %>
+        <% @bookings.each do |booking| %>
+          <h3>Bag: <%= booking.bag.title %></h3>
+
+          <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Start date</th>
+            <td><%= booking.check_in %></td>
+          </tr>
+          <tr>
+            <th>Return date</th>
+            <td><%= booking.check_out %></td>
+          </tr>
+          <tr>
+            <th>Paid</th>
+            <td>£<%= booking.total_price %></td>
+          </tr>
+        </tbody>
+      </table>
+
+        <% end %>
+      <% else %>
+        <h3>You have no bookings</h3>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+
