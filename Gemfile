@@ -25,6 +25,9 @@ gem 'omniauth-facebook'
 
 gem 'bootstrap-datepicker-rails'
 
+#Adding the messaging gem
+gem 'mailboxer'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
