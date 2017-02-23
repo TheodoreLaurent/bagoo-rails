@@ -19,8 +19,6 @@ user2 = User.create({
   password: '654321',
   })
 
-
-
 bag1 = Bag.create({
   title: 'A tasty Bag',
   category: 'Travel',
@@ -29,7 +27,8 @@ bag1 = Bag.create({
   price_per_day: '30',
   description: 'great bag',
   datein: '01 Jan 2017',
-  dateout: '31 Dec 2017'
+  dateout: '31 Dec 2017',
+  address: "22 Elder Street London"
   })
 
 bag2 = Bag.create({
@@ -40,7 +39,8 @@ bag2 = Bag.create({
   price_per_day: '100',
   description: 'great luxury bag',
   datein: '01 Feb 2017',
-  dateout: '01 Nov 2017'
+  dateout: '01 Nov 2017',
+  address: 'WC1N 3LE'
   })
 
 

@@ -1,5 +1,6 @@
 class Bag < ApplicationRecord
   has_attachments :photos, maximum: 6
+  validates :address, presence: true
 
   has_many :bookings, dependent: :destroy
   belongs_to :user
@@ -11,7 +12,7 @@ class Bag < ApplicationRecord
     if pattern.blank?  # blank? covers both nil and empty string
       all
     else
-      where('brand LIKE ? OR category LIKE ?', "%#{pattern.capitalize}%", "%#{pattern.capitalize}%")
+      where('category LIKE ?', "%#{pattern}%")
     end
   end
 

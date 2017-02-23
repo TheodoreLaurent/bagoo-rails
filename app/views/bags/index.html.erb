@@ -2,27 +2,16 @@
 <!-- Cards for results: need to adapt with the search option -->
 
 <h1 class="text-center">results</h1>
-
 <div class="container">
   <div class="row">
-
     <% @bags.each do |bag| %>
-
     <div class="col-xs-12 col-sm-4">
-
-
        <% if bag.photos? %>
-
       <div class="card"
       style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
-
       <% else %>
-
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
-
 <% end %>
-
-
         <div class="card-category"></div>
         <div class="card-description">
           <h2> <%= bag.brand %> </h2>
@@ -32,10 +21,6 @@
     </div>
     <% end %>
   </div>
-
 </div>
-
 <div></div>
-
 <br>
-

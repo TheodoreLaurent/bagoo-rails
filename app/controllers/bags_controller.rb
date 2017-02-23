@@ -2,20 +2,21 @@ class BagsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   before_action :set_bag, only: [:show, :edit, :update, :destroy]
 
+
   def index
-    @bags = Bag.search(params[:query]).where.not(latitude: nil, longitude: nil)
+    # @bags = Bag.search(params[:query])
 
     @hash = Gmaps4rails.build_markers(@bags) do |bag, marker|
       marker.lat bag.latitude
-      marker.lng baglongitude
+      marker.lng bag.longitude
     end
 
     @checkin = params[:checkin_query]
     @checkout = params[:checkout_query]
     if params[:checkin_query].empty? || params[:checkout_query].empty?
-      @bags = Bag.search(params[:query])
+      @bags = Bag.search(params[:query]).where.not(latitude: nil, longitude: nil)
     else
-      @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: params[:checkin_query], end_date: params[:checkout_query]})
+      @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: Date.parse(@checkin), end_date: Date.parse(@checkout)}).where.not(latitude: nil, longitude: nil)
     end
 
    end
