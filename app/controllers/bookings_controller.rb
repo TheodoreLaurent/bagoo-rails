@@ -17,10 +17,18 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.bag = @bag
     @booking.user = current_user
-
+    @booking.accepted = false
     @booking.save
       redirect_to my_bookings_path
   end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    @booking.accepted = true
+    @booking.save
+    redirect_to dashboard_path
+  end
+
 
   private
 
