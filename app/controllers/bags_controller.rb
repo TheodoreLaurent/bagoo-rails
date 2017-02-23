@@ -63,7 +63,7 @@ class BagsController < ApplicationController
   end
 
   def bag_params
-    params.require(:bag).permit(:title, :category, :brand, :capacity, :price_per_day, :description, :address, :latitude, :longitude, photos: [])
+    params.require(:bag).permit(:title, :category, :brand, :capacity, :price_per_day, :description, :address, :latitude, :longitude, :datein, :dateout, photos: [])
   end
 end
 
