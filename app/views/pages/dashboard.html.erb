@@ -1,25 +1,13 @@
-<h2>my bookings</h2>
-<% @user.bags.each do |bag| %>
-  <% bag.bookings.each do |booking| %>
-    <%# if not   %>
-    <p><%= booking.check_out %></p>
-    <%# else %>
-
-    <%# end %>
-  <% end %>
-<% end %>
-
-
 <div class="container">
   <div class="row padded">
 
-    <h3>New Bookings</h3>
+    <h3>Booking requests</h3>
     <% @user.bags.each do |bag| %>
       <% bag.bookings.each do |booking| %>
         <% if !booking.accepted %>
           <div class="col-xs-12 col-sm-4">
 
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path (bag.photos? ? (bag.photos[0].path) : "placeholder_bag_rca6hk"), height: 300, width: 400, crop: :fill %>')">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path (bag.photos? ? (bag.photos[0].path) : "https://unsplash.it/200/300/?random"), height: 300, width: 400, crop: :fill %>')">
 
               <div class="card-description">
                 <h2> <%= booking.bag.title %></h2>
@@ -48,11 +36,11 @@
         <% if booking.accepted %>
           <div class="col-xs-12 col-sm-4">
 
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path (bag.photos? ? (bag.photos[0].path) : "placeholder_bag_rca6hk"), height: 300, width: 400, crop: :fill %>')">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path (bag.photos? ? (bag.photos[0].path) : "https://unsplash.it/200/300/?random"), height: 300, width: 400, crop: :fill %>')">
 
               <div class="card-description">
                 <h2> <%= booking.bag.title %></h2>
-
+                <p> <%= booking.check_in %> - <%= booking.check_out %> </p>
               </div>
 
             </div>

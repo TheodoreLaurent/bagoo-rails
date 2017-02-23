@@ -21,7 +21,7 @@ user2 = User.create({
 
 bag1 = Bag.create({
   title: 'A tasty Bag',
-  category: 'Travel',
+  category: 'Satchel',
   brand: 'Vuitton',
   capacity: '30',
   price_per_day: '30',
@@ -33,7 +33,7 @@ bag1 = Bag.create({
 
 bag2 = Bag.create({
   title: 'A sumptious handbag',
-  category: 'Luxury',
+  category: 'Handbag',
   brand: 'Gucci',
   capacity: '10',
   price_per_day: '100',

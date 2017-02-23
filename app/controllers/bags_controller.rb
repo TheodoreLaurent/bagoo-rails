@@ -47,7 +47,6 @@ class BagsController < ApplicationController
     @booking = Booking.new
     @checkin = params[:checkin_query]
     @checkout = params[:checkout_query]
-
   end
 
   def new

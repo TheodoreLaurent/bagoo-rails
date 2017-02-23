@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container padded">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
       <h1>Add a bag</h1>
@@ -6,14 +6,15 @@
 
         <%= simple_form_for(@bag) do |f| %>
         <%= f.input :title %>
-        <%= f.input :category, :collection => ["Travel", "Casual", "Luxury", "Camping" ] %>
+        <%= f.input :category, :collection => ["Backpack", "Carry-on luggage", "Handbag", "Briefcase", "Suitcase", "Satchel", "Gym bag", "Animal case", "Trunk", "Other"] %>
         <%= f.input :brand %>
-        <%= f.input :capacity %>
-        <%= f.input :price_per_day %>
+        <%= f.input :capacity, label: "Capacity (Liters)"%>
+        <%= f.input :price_per_day, label: "Price per day (£)" %>
         <%= f.input :description %>
         <%= f.input :address %>
-        <%= f.input :datein %>
-        <%= f.input :dateout %>
+        <p><strong>Availabilities</strong></p>
+        <%= f.input :datein, as: :string, label: false, input_html:{ id: "checkin", placeholder: "from"} %>
+        <%= f.input :dateout, as: :string, label: false, input_html:{ id: "checkout", placeholder: "to"} %>
         <%= f.input :photos, as: :attachinary %>
         <%= f.button :submit, class: 'btn btn-primary' %>
       <% end %>
