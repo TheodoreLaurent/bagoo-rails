@@ -19,9 +19,9 @@
 
 <!-- display the information about the bag -->
 <div class="container">
+
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
-
       <div class="bag-description">
         <h3>About this bag</h3>
         <p><%= @bag.description %></p>
@@ -83,13 +83,15 @@ alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
 <% end %>
 
 <!-- MAP FOR BAG -->
-<div id="map" class="map-container" style="width: 100%; height: 400px;">
+
+
+<div id="map" class="map-container" style="width: 50%; height: 350px; margin:auto">
 
   <% content_for(:after_js) do %>
   <script type="text/javascript">
     $(document).on('ready', function() {
 
-      var handler = Gmaps.build('Google', { markers: { clusterer: undefined }});
+      var handler = Gmaps.build('Google', { markers: { clusterer: undefined }, map_options:{draggable: true}});
       handler.buildMap({ internal: { id: 'map' } }, function(){
         markers = handler.addMarkers([
         {
@@ -171,6 +173,7 @@ alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
 <% else %>
 <div class="text-center">
   <ul>
+  <br>
     <li><%= link_to "Edit my listing", edit_bag_path  %></li>
     <li><%= link_to "Delete my listing", bag_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
   </ul>
