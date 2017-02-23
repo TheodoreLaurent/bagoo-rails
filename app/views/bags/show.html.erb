@@ -84,14 +84,6 @@
 </div>
 </div>
 
-<% content_for(:after_js) do %>
-<%= javascript_tag do %>
-$(document).ready(function() {
-var coord = <%= raw @bag_coordinates.to_json %>;
-alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
-});
-<% end %>
-<% end %>
 
 <!-- MAP FOR BAG -->
 
