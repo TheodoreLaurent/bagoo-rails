@@ -25,6 +25,10 @@
             <th>Paid</th>
             <td>£<%= booking.total_price %></td>
           </tr>
+          <tr>
+            <th><strong> Status: </strong></th>
+            <td><%= booking.accepted ? "Confirmed" : "Awaiting confirmation by owner" %></td>
+          </tr>
         </tbody>
       </table>
 
