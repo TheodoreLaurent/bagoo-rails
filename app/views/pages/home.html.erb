@@ -32,19 +32,43 @@
  </div>
 </div>
 
+<br>
 <!-- Your cards code -->
 <div class="wrapper-grey">
  <div class="text-center">
    <div class="padded">
     <div class="container">
-      <h2>Some Bags</h2>
+      <h2>Our featured bags</h2>
       <div class="row">
-        <div class="col-xs-12 col-sm-4">
-          <!-- insert <div class="card"> -->
+        <% Bag.first(3).each do |bag| %>
+    <div class="col-xs-12 col-sm-4">
+       <% if bag.photos? %>
+      <div class="card"
+      style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
+      <% else %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
+<% end %>
+        <div class="card-category"></div>
+        <div class="card-description">
+          <h2> <%= bag.brand %> </h2>
+        </div>
+        <%= link_to "", bag_path(bag, {checkin: @checkin, checkout: @checkout}), class: "card-link" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+
+
+
+
+
 
         </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+
+
+<br>
