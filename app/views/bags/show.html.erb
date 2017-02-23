@@ -108,7 +108,7 @@ alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
   <% end %>
 </div>
 
-<!-- -->
+<!-- review form before booking-->
 
 <% if @bag.user != current_user %>
 
@@ -148,6 +148,8 @@ alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
     </div>
   </div>
 </div>
+
+<!-- calculate the number of days from the datepicker and calculate the total price -->
 
 <% content_for :after_js do %>
 <script>
