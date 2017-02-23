@@ -17,60 +17,70 @@
   </div>
 </div>
 
-<!-- display the information about the bag -->
+
 <div class="container">
-
-  <div class="row">
-    <div class="col-md-offset-2 col-md-8">
-      <div class="bag-description">
-        <h3>About this bag</h3>
-        <p><%= @bag.description %></p>
-      </div>
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Title</th>
-            <td><%= @bag.title %></td>
-          </tr>
-          <tr>
-            <th>Category</th>
-            <td><%= @bag.category %></td>
-          </tr>
-          <tr>
-            <th>Brand</th>
-            <td><%= @bag.brand %></td>
-          </tr>
-          <tr>
-            <th>Capacity</th>
-            <td><%= @bag.capacity %></td>
-          </tr>
-          <tr>
-            <th>Pick-up Address</th>
-            <td><%= @bag.address%></td>
-          </tr>
-          <tr>
-            <th>Price per day (£)</th>
-            <td><%= @bag.price_per_day %></td>
-          </tr>
-          <tr>
-            <th>Available from</th>
-            <td><%= @bag.datein %></td>
-          </tr>
-          <tr>
-            <th>Available until</th>
-            <td><%= @bag.dateout %></td>
-          </tr>
-        </tbody>
-      </table>
+ <div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="bag-description">
+      <h3>About this bag</h3>
+      <p><%= @bag.description %></p>
     </div>
+
+    <!-- Display the back button link if the user who booked clicks on details -->
+
+    <div class="text-center">
+    <div class="list-inline">
+      <li><%= link_to "My Bookings", my_bookings_path  %></li> |
+      <li><%= link_to "My Dashboard", dashboard_path  %></li>
+      </div>
+    </div>
+
+    <!-- -->
+    <!-- display the information about the bag -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Title</th>
+          <td><%= @bag.title %></td>
+        </tr>
+        <tr>
+          <th>Category</th>
+          <td><%= @bag.category %></td>
+        </tr>
+        <tr>
+          <th>Brand</th>
+          <td><%= @bag.brand %></td>
+        </tr>
+        <tr>
+          <th>Capacity</th>
+          <td><%= @bag.capacity %></td>
+        </tr>
+        <tr>
+          <th>Pick-up Address</th>
+          <td><%= @bag.address%></td>
+        </tr>
+        <tr>
+          <th>Price per day (£)</th>
+          <td><%= @bag.price_per_day %></td>
+        </tr>
+        <tr>
+          <th>Available from</th>
+          <td><%= @bag.datein %></td>
+        </tr>
+        <tr>
+          <th>Available until</th>
+          <td><%= @bag.dateout %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 </div>
 
 <% content_for(:after_js) do %>
@@ -118,44 +128,44 @@ alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
       <%= simple_form_for [@bag, @booking], class: 'booking-request' do |f| %>
-        <h4>Review your booking below:</h4>
+      <h4>Review your booking below:</h4>
 
-        <%= f.input :check_in, as: :string, label: false, input_html:{ id: "checkin", placeholder: "from", value: params[:checkin]} %>
+      <%= f.input :check_in, as: :string, label: false, input_html:{ id: "checkin", placeholder: "from", value: params[:checkin]} %>
 
 
-        <%= f.input :check_out, as: :string, label: false, input_html:{ id:"checkout", placeholder: "to", value: params[:checkout]} %>
+      <%= f.input :check_out, as: :string, label: false, input_html:{ id:"checkout", placeholder: "to", value: params[:checkout]} %>
 
-        <table class="table">
-          <thead>
-            <tr><th></th><th></th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Price per day</th>
-              <td style = "text-align: right"><%= @bag.price_per_day %></td>
-            </tr>
-            <tr>
-              <th>Number of days</th>
-              <td style = "text-align: right" id="nbDays"></td>
-            </tr>
-            <tr>
-              <th>Total price</th>
-              <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
-            </tr>
-          </table>
+      <table class="table">
+        <thead>
+          <tr><th></th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Price per day</th>
+            <td style = "text-align: right"><%= @bag.price_per_day %></td>
+          </tr>
+          <tr>
+            <th>Number of days</th>
+            <td style = "text-align: right" id="nbDays"></td>
+          </tr>
+          <tr>
+            <th>Total price</th>
+            <td style = "text-align: right" id="total-price"><%= @bag.price_per_day  %></td>
+          </tr>
+        </table>
 
-          <%= f.submit class: 'btn btn-primary btn-large btn-block' %>
+        <%= f.submit class: 'btn btn-primary btn-large btn-block' %>
         <% end %>
 
+      </div>
     </div>
   </div>
-</div>
 
-<!-- calculate the number of days from the datepicker and calculate the total price -->
+  <!-- calculate the number of days from the datepicker and calculate the total price -->
 
-<% content_for :after_js do %>
-<script>
-  $("form.new_booking input").change(function(){
+  <% content_for :after_js do %>
+  <script>
+    $("form.new_booking input").change(function(){
     // console.log('hi');
     if (($("#checkout").datepicker('getDate') != null) && ($("#checkin").datepicker('getDate') != null)){
       var a = $("#checkout").datepicker('getDate').getTime();
@@ -175,7 +185,7 @@ alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
 <% else %>
 <div class="text-center">
   <ul>
-  <br>
+    <br>
     <li><%= link_to "Edit my listing", edit_bag_path  %></li>
     <li><%= link_to "Delete my listing", bag_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
   </ul>
