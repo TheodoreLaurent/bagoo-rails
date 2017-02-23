@@ -8,8 +8,8 @@
         <%= f.input :title %>
         <%= f.input :category, :collection => ["Backpack", "Carry-on luggage", "Handbag", "Briefcase", "Suitcase", "Satchel", "Gym bag", "Animal case", "Trunk", "Other"] %>
         <%= f.input :brand %>
-        <%= f.input :capacity %>
-        <%= f.input :price_per_day %>
+        <%= f.input :capacity, label: "Capacity (Liters)"%>
+        <%= f.input :price_per_day, label: "Price per day (£)" %>
         <%= f.input :description %>
         <%= f.input :address %>
         <p><strong>Availabilities</strong></p>
