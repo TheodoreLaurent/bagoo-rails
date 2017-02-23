@@ -6,7 +6,7 @@
 
         <%= simple_form_for(@bag) do |f| %>
         <%= f.input :title %>
-        <%= f.input :category, :collection => ["Travel", "Casual", "Luxury", "Camping" ] %>
+        <%= f.input :category, :collection => ["Backpack", "Carry-on luggage", "Handbag", "Briefcase", "Suitcase", "Satchel", "Gym bag", "Animal case", "Trunk", "Other"] %>
         <%= f.input :brand %>
         <%= f.input :capacity %>
         <%= f.input :price_per_day %>
