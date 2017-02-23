@@ -19,13 +19,21 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.accepted = false
     @booking.save
+
     redirect_to my_bookings_path
   end
 
   def accept
     @booking = Booking.find(params[:id])
     @booking.accepted = true
+    request_dates_array = (@booking.check_in..@booking.check_out).to_a
+    bag = @booking.bag
+    bag.bookeddates = request_dates_array.push(*@booking.bag.bookeddates)
+
+    bag.save
     @booking.save
+
+
     redirect_to dashboard_path
   end
 

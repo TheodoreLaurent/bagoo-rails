@@ -10,13 +10,34 @@ class BagsController < ApplicationController
       marker.lat bag.latitude
       marker.lng bag.longitude
     end
-
     @checkin = params[:checkin_query]
     @checkout = params[:checkout_query]
+
+    #Here we check if the bag is booked for the checkin/checkout query
+
+
+
+
+    # ========================================================
+
     if params[:checkin_query].empty? || params[:checkout_query].empty?
       @bags = Bag.search(params[:query]).where.not(latitude: nil, longitude: nil)
     else
       @bags = Bag.search(params[:query]).where("datein <= :start_date AND dateout >= :end_date", {start_date: Date.parse(@checkin), end_date: Date.parse(@checkout)}).where.not(latitude: nil, longitude: nil)
+      #Here we check if the bag is booked for the checkin/checkout query
+      # @epoch = Date.new(1970,1,1)
+
+      date_checkin = Date.parse(@checkin)
+      date_checkout = Date.parse(@checkout)
+
+
+      @dates_array = (date_checkin..date_checkout).to_a
+
+      # @dates_array_epoch = []
+
+      # @dates_array.each do |date|
+      #   @dates_array_epoch << (date - @epoch).to_i
+      # end
     end
 
    end
