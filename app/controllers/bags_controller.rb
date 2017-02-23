@@ -7,7 +7,7 @@ class BagsController < ApplicationController
 
     @hash = Gmaps4rails.build_markers(@bags) do |bag, marker|
       marker.lat bag.latitude
-      marker.lng baglongitude
+      marker.lng bag.longitude
     end
 
     @checkin = params[:checkin_query]
