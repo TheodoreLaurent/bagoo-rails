@@ -1,17 +1,68 @@
 
 <!-- Cards for results: need to adapt with the search option -->
 
-<h1 class="text-center">results</h1>
+<h1 class="text-center">Results</h1>
+<br>
 <div class="container">
   <div class="row">
-    <% @bags.each do |bag| %>
-    <div class="col-xs-12 col-sm-4">
+    <% if !@dates_array.nil?  %>
+
+      <% @bags.each do |bag| %>
+        <% booked_dates_array_date_class = [] %>
+        <% bag.bookeddates.each do |bd| %>
+        <% booked_dates_array_date_class << Date.parse(bd)  %>
+        <% end %>
+
+        <%  if (booked_dates_array_date_class & @dates_array).empty? %>
+
+          <div class="col-xs-12 col-sm-4">
+             <% if bag.photos? %>
+               <div class="card"
+               style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
+             <% else %>
+               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
+              <% end %>
+              <div class="card-category"></div>
+              <div class="card-description">
+                <h2> <%= bag.brand %> </h2>
+              </div>
+          <%= link_to "", bag_path(bag, {checkin: @checkin, checkout: @checkout}), class: "card-link" %>
+          </div>
+        </div>
+
+        <% else %>
+            <div class="col-xs-12 col-sm-4">
+             <% if bag.photos? %>
+               <div class="card"
+               style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
+             <% else %>
+               <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
+              <% end %>
+              <div class="card-category"></div>
+              <div class="card-description">
+                <h2 style="color: red;"> BOOKED FOR YOUR DATES </h2>
+
+              </div>
+
+          </div>
+        </div>
+
+        <%  end %>
+      <% end %>
+
+    <% else %>
+       <% @bags.each do |bag| %>
+      <div class="col-xs-12 col-sm-4">
        <% if bag.photos? %>
+
+       
+
       <div class="card"
       style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
       <% else %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.pexels.com/photos/24467/pexels-photo-24467.jpg?w=1260&h=750&auto=compress&cs=tinysrgb'); height: 300; width: 400; crop: :fill);">
 <% end %>
+
         <div class="card-category"></div>
         <div class="card-description">
           <h2> <%= bag.brand %> </h2>
@@ -20,7 +71,8 @@
       </div>
     </div>
     <% end %>
-  </div>
+    <% end %>
+</div>
 </div>
 </div>
 <div></div>

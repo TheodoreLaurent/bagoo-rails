@@ -4,20 +4,21 @@
 <div class="cover-container text-center">
   <div class="container">
     <div class="cover">
-      <div class="bag-cover-photos">
-        <% if (defined?(@bag.photos))  %>
+      <div class="bag-cover-photos col-md-offset-2 col-md-8">
+        <% if @bag.photos.any?  %>
         <% @bag.photos.each do |photo| %>
         <%= cl_image_tag photo.path, height: 350, crop: :fill %>
         <% end %>
         <% else %>
-        <p>This bag has no photos</p>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.pexels.com/photos/24467/pexels-photo-24467.jpg?w=1260&h=750&auto=compress&cs=tinysrgb'); height: 350; crop: :fill);">
+        </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
 
-<!-- display the information about the bag -->
+
 <div class="container">
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
@@ -34,6 +35,17 @@
         <p><%= @bag.description %></p>
       </div>
     </div>
+      
+    <!-- Display the back button link if the user who booked clicks on details -->
+
+    <div class="text-center">
+    <div class="list-inline">
+      <li><%= link_to "My Bookings", my_bookings_path  %></li> |
+      <li><%= link_to "My Dashboard", dashboard_path  %></li>
+      </div>
+    </div>
+
+    <!-- -->
     <table class="table table-striped">
       <thead>
         <tr>
@@ -80,14 +92,6 @@
 </div>
 </div>
 
-<% content_for(:after_js) do %>
-<%= javascript_tag do %>
-$(document).ready(function() {
-var coord = <%= raw @bag_coordinates.to_json %>;
-alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
-});
-<% end %>
-<% end %>
 
 <!-- MAP FOR BAG -->
 
