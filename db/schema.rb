@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(version: 20170223114126) do
     t.text     "description"
     t.integer  "user_id"
     t.string   "title"
+    t.date     "datein"
+    t.date     "dateout"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
-    t.date     "datein"
-    t.date     "dateout"
     t.index ["user_id"], name: "index_bags_on_user_id", using: :btree
   end
 
