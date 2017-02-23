@@ -40,6 +40,11 @@
             <% end %>
           </li>
           <li>
+          <%= link_to "/dashboard" do %>
+            <i class="fa fa-industry"></i> <%= t(".profile", default: "My dashboard") %>
+            <% end %>
+          </li>
+          <li>
             <%= link_to "/" do %>
             <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
             <% end %>
