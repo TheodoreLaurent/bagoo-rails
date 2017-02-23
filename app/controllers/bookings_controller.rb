@@ -17,9 +17,8 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.bag = @bag
     @booking.user = current_user
-
     @booking.save
-      redirect_to my_bookings_path
+    redirect_to my_bookings_path
   end
 
   private
@@ -34,3 +33,4 @@ class BookingsController < ApplicationController
 
 
 end
+
