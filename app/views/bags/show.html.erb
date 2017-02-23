@@ -20,13 +20,22 @@
 
 
 <div class="container">
- <div class="row">
-  <div class="col-md-offset-2 col-md-8">
-    <div class="bag-description">
-      <h3>About this bag</h3>
-      <p><%= @bag.description %></p>
-    </div>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div class="bag-summary">
+       <div class="bag-owner">
+        <% if @user.facebook_picture_url %>
+        <%= image_tag @user.facebook_picture_url, class:"text-align avatar-large" %>
+        <% end %>
+        <p><%= @user.first_name%> <%=@user.last_name %></p>
+      </div>
 
+      <div class="bag-description">
+        <h3>About this bag</h3>
+        <p><%= @bag.description %></p>
+      </div>
+    </div>
+      
     <!-- Display the back button link if the user who booked clicks on details -->
 
     <div class="text-center">
@@ -37,7 +46,6 @@
     </div>
 
     <!-- -->
-    <!-- display the information about the bag -->
     <table class="table table-striped">
       <thead>
         <tr>
@@ -86,7 +94,6 @@
 
 
 <!-- MAP FOR BAG -->
-
 
 <div id="map" class="map-container" style="width: 50%; height: 350px; margin:auto">
 
