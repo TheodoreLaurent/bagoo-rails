@@ -1,47 +1,51 @@
+<h1 class="text-center">My Bookings</h1>
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <% if @bookings.any? %>
-        <% @bookings.each do |booking| %>
-          <h3>Bag: <%= booking.bag.title %></h3>
+  <% if @bookings.any? %>
+  <% @bookings.each do |booking| %>
+  <div class="col-xs-12 col-sm-4">
+    <% if booking.bag.photos? %>
 
-          <table class="table table-striped">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Start date</th>
-            <td><%= booking.check_in %></td>
-          </tr>
-          <tr>
-            <th>Return date</th>
-            <td><%= booking.check_out %></td>
-          </tr>
-          <tr>
-            <th>Paid</th>
-            <td>£<%= booking.total_price %></td>
-          </tr>
-          <tr>
-            <th><strong> Status: </strong></th>
-            <td><%= booking.accepted ? "Confirmed" : "Awaiting confirmation by owner" %></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h4 class="text-center"> <%= link_to 'Details', bag_path(booking.bag)%></h4>
-
-
-        <% end %>
-      <% else %>
-        <h3>You have no bookings</h3>
+    <div class="card"
+    style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path booking.bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
+    <% else %>
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
       <% end %>
-
+      <div class="card-category"><h2><%= booking.bag.title %></h2></div>
+      <div class="card-description">
+        <table>
+          <tbody>
+            <tr>
+              <th>Pick-up:</th>
+              <td><%= booking.check_in %></td>
+            </tr>
+            <tr>
+              <th>Return:</th>
+              <td><%= booking.check_out %></td>
+            </tr>
+            <tr>
+              <th>Paid</th>
+              <td>£<%= booking.total_price %></td>
+            </tr>
+            <tr>
+              <th><strong> Status: </strong></th>
+              <td><%= booking.accepted ? "Confirmed" : "Awaiting confirmation by owner" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= link_to "", bag_path(booking.bag), class: "card-link" %>
     </div>
   </div>
+  <% end %>
+</div>
+
+<% else %>
+<div class="text-center">
+  <br>
+  <h3>You have no bookings</h3>
+  <br>
+</div>
+<% end %>
 </div>
 
 
