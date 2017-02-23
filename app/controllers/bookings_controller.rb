@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.accepted = false
     @booking.save
-      redirect_to my_bookings_path
+    redirect_to my_bookings_path
   end
 
   def accept
@@ -42,3 +42,4 @@ class BookingsController < ApplicationController
 
 
 end
+

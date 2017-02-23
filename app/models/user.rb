@@ -28,4 +28,12 @@ class User < ApplicationRecord
 
     return user
   end
+
+  def name
+    return self.id
+  end
+
+  def mailboxer_email(object)
+    return nil
+  end
 end
