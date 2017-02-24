@@ -5,18 +5,32 @@
   <div class="container">
     <div class="cover">
       <div class="bag-cover-photos col-md-offset-2 col-md-8">
+
         <% if @bag.photos.any?  %>
-        <% @bag.photos.each do |photo| %>
-        <%= cl_image_tag photo.path, height: 350, crop: :fill %>
-        <% end %>
+
+        <div class="carousel slide multi-item-carousel" id="indexCarousel">
+          <div class="carousel-inner">
+            <div class="item card active card-carousel">
+            <%= cl_image_tag @bag.photos[0].path %>
+            </div>
+            <% @bag.photos[1..-1].each do |photo| %>
+            <div class="item card card-carousel">
+              <%= cl_image_tag photo.path %>
+            </div>
+            <% end %>
+          </div>
+          <a class="left carousel-control" href="#indexCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a class="right carousel-control" href="#indexCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+
         <% else %>
         <div class="card"
-              style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path 'default_bag.png'%>')">
-        </div>
-        <% end %>
+        style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path 'default_bag.png'%>')">
       </div>
+      <% end %>
     </div>
   </div>
+</div>
 </div>
 
 
@@ -40,9 +54,9 @@
     <!-- Display the back button link if the user who booked clicks on details -->
 
     <div class="text-center">
-    <div class="list-inline">
-      <li><%= link_to "My Bookings", my_bookings_path  %></li> |
-      <li><%= link_to "My Dashboard", dashboard_path  %></li>
+      <div class="list-inline">
+        <li><%= link_to "My Bookings", my_bookings_path  %></li> |
+        <li><%= link_to "My Dashboard", dashboard_path  %></li>
       </div>
     </div>
 
