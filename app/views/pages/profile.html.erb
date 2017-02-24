@@ -1,40 +1,59 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
+    <div class="col-md-offset-2 col-md-8 ">
+      <h3>Hey, I'm <%= @user.first_name %>!</h3>
 
-     <h3>My Profile</h3>
-      <div class="text-center">
-
-      <% if @user.facebook_picture_url %>
-        <%= image_tag @user.facebook_picture_url %>
-      <% end %>
-
+      <div class="profile-summary">
+      <div class="table-info">
+        <% if @user.facebook_picture_url %>
+        <%= image_tag @user.facebook_picture_url, class:"text-align avatar-large" %>
+        <% end %>
       </div>
 
+      <div class="info-box">
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th> First Name</th>
-            <td><%= @user.first_name %></td>
-          </tr>
-          <tr>
-            <th>Last Name</th>
-            <td><%= @user.last_name%></td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td><%= @user.email%></td>
-          </tr>
-        </tbody>
-      </table>
+        <h4><%= @user.first_name %> <%= @user.last_name%></h4>
 
+        <h4><%= @user.email%></h4>
+      </div>
+    </div>
+
+  <h3>My bags </h3>
+
+  <div class="container">
+    <div class="row">
+      <% if current_user.bags == []  %>
+      <div class="text-center profile-summary">
+        <br>
+        <h3>You have no bags listed</h3>
+        </div>
+        <% else %>
+
+        <% current_user.bags.each do |bag| %>
+
+        <div class="col-xs-12 col-md-4">
+
+          <% if bag.photos? %>
+
+          <div class="card"
+          style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
+
+          <% else %>
+
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
+
+            <% end %>
+
+            <div class="card-description">
+              <h2> <%= bag.brand %> </h2>
+            </div>
+            <%= link_to "", bag_path(bag), class: "card-link" %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
     </div>
   </div>
+</div>
 </div>
