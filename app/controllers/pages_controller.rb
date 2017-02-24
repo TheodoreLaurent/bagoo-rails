@@ -2,6 +2,12 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :results]
 
   def home
+      @bags = Bag.all.where.not(latitude: nil, longitude: nil)
+      @hash = Gmaps4rails.build_markers(@bags) do |bag, marker|
+      marker.lat bag.latitude
+      marker.lng bag.longitude
+      marker.infowindow render_to_string(partial: "/bags/map_details", locals: { bag: bag })
+    end
   end
 
   def profile
