@@ -83,9 +83,36 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li>
+          <%= link_to "/profile" do %>
+            <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+            <% end %>
+          </li>
+           <li>
+          <%= link_to "/listings" do %>
+            <i class="fa fa-suitcase"></i> <%= t(".profile", default: "My Listings") %>
+            <% end %>
+          </li>
+          <li>
+          <%= link_to "/my-bookings" do %>
+            <i class="fa fa-handshake-o"></i> <%= t(".profile", default: "My bookings") %>
+            <% end %>
+          </li>
+          <li>
+          <%= link_to "/dashboard" do %>
+            <i class="fa fa-industry"></i> <%= t(".profile", default: "My dashboard") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/" do %>
+            <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+            <% end %>
+          </li>
       </ul>
     </div>
   </div>
