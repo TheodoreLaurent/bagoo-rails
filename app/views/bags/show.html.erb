@@ -108,7 +108,7 @@ alert('Bag coordinates are ' + @coordinates.lat + ', ' + @coordinates.l);
         {
           "lat": <%= @bag.latitude %>,
           "lng": <%= @bag.longitude %>,
-          "infowindow": "<h2>My bag is here !</h2>"
+          "infowindow": "<h2><%= @bag.title %></h2>"
         }
         ]);
         handler.bounds.extendWith(markers);
