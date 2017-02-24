@@ -1,8 +1,9 @@
 
 <!-- Cards for results: need to adapt with the search option -->
+<div class="bagoo-wrapper">
 
-<h1 class="text-center">Results</h1>
-<br>
+<h1 class="text-center">Our elves found these...</h1>
+<br> <br> <br>
 <div class="container">
   <div class="row">
     <% if !@dates_array.nil?  %>
@@ -24,7 +25,7 @@
               <% end %>
               <div class="card-category"></div>
               <div class="card-description">
-                <h2> <%= bag.brand %> </h2>
+                <h2> <%= bag.title %> </h2>
               </div>
           <%= link_to "", bag_path(bag, {checkin: @checkin, checkout: @checkout}), class: "card-link" %>
           </div>
@@ -38,9 +39,10 @@
              <% else %>
                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://unsplash.it/200/300/?random <%= rand(10) + 1 %>'); height: 300; width: 400; crop: :fill);">
               <% end %>
-              <div class="card-category"></div>
+              <div style="background-color: #CF202E;" class="card-category"><h4>Booked for your dates</h4></div>
               <div class="card-description">
-                <h2 style="color: red;"> BOOKED FOR YOUR DATES </h2>
+                <h2><%= bag.title %></h2>
+
 
               </div>
 
@@ -55,7 +57,7 @@
       <div class="col-xs-12 col-sm-4">
        <% if bag.photos? %>
 
-       
+
 
       <div class="card"
       style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
@@ -77,3 +79,4 @@
 </div>
 <div></div>
 <br>
+</div>
