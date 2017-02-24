@@ -47,7 +47,8 @@
          <div class="card"
          style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path bag.photos.first.path, height: 300, width: 400, crop: :fill %>')">
          <% else %>
-         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.pexels.com/photos/24467/pexels-photo-24467.jpg?w=1260&h=750&auto=compress&cs=tinysrgb'); height: 300; width: 400; crop: :fill);">
+         <div class="card"
+              style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path 'default_bag.png'%>')">
           <% end %>
           <div class="card-category"></div>
           <div class="card-description">
