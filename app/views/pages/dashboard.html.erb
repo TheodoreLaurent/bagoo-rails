@@ -14,9 +14,9 @@
                 <p> <%= booking.check_in %> - <%= booking.check_out %> </p>
               </div>
 
-              <div class="accept-btn">
-                <%= link_to "Accept", { controller: :bookings, action: :accept, id: booking.id }, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-              </div>
+
+                <%= link_to "Accept", { controller: :bookings, action: :accept, id: booking.id }, data: { confirm: 'Are you sure?' }, class: "accept-btn btn btn-primary btn-block bt-large" %>
+
 
             </div>
           </div>
